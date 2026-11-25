@@ -990,7 +990,7 @@ let sinStep=0;
 const VMSG={1:[T(459,'空気が 重い。'),T(460,'よく知っている街の はずなのに、\nすべてが 壊れている。'),T(461,'ここに いるだけで、\n自分の中に 何かが\nしみこんでくる。')],2:[T(462,'街の形は 同じなのに、\n音が しない。'),T(463,'息を ひそめて いる ような\n静けさだ。'),T(464,'ここも シャッターで 三つに\n区切られている。\nかぎは 箱の中に ある はずだ。')],3:[T(465,'駅前だ。\nどの時計も 同じ時刻で\n止まっている。'),T(466,'5年前の、あの晩の 時刻だ。')],4:[T(467,'足もとの 感覚が ない。'),T(468,'街の形が ほどけていく。')],6:[T(469,'裂け目の 底に、まだ\n下が あった。'),T(470,'見覚えの ある 廊下だ。\nスリッパの 位置まで、\nあの晩の まま。')],5:[T(471,'いちばん 底だ。'),T(472,'足もとに、見覚えのある\n屋根が 沈んでいる。')]};
 function warp(nd){
   const od=S.depth;sfx('warp');S.depth=nd;dim();flash=24;banner=150;steps=0;queue.length=0;mv=null;S.px=null;
-  const q=nd>od?ENT[nd]:EXT[nd];S.x=q[0];S.y=q[1];S.maxd=Math.max(S.maxd||0,nd);
+  const q=nd>od?ENT[nd]:EXT[nd];S.x=q[0];S.y=q[1];if(nd>(S.maxd||0))try{gtag('event','depth_reached',{depth:nd})}catch(e){}S.maxd=Math.max(S.maxd||0,nd);
   if(nd==0){S.flags.gd=0;S.flags.cd=0;S.flags.od=0;S.flags.hd=0;S.flags.fd=0;S.flags.rd=0;}
   const fs=[],f=S.flags;let msg=null;
   if(nd>0&&!f['v'+nd]){f['v'+nd]=1;msg=VMSG[nd];if(nd==1)msg=['@layers',T(473,'足の 下に、街が あった。'),T(474,'同じ 街が、何層も。')].concat(msg);}
