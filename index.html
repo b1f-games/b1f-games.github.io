@@ -2,6 +2,9 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NBD6ZR8S06"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NBD6ZR8S06');</script>
+
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>DEAR BALLAST — Free browser demo</title>
 <meta name="description" content="沈んだ街の下へ潜るレトロRPG。ブラウザですぐ遊べる無料体験版（7言語）。A retro RPG about diving beneath a sunken town. Free browser demo.">
@@ -884,7 +887,7 @@ let S=null,mode='title',mv=null,steps=0,flash=0,banner=0,tick=0;
 let dlg=null,shop=null,menu=null,bt=null,title={i:0,save:false};
 const held={},queue=[];
 function setMode(m){mode=m;queue.length=0;}
-function newGame(){S={depth:0,x:3,y:5,dir:0,lv:1,hp:36,mhp:36,mp:8,mmp:8,atk:6,def:4,exp:0,gold:200,items:{onigiri:2},wp:null,ar:null,sin:0,town:0,good:0,mal:{},carry:{},name:T(381,'ナギ'),hn:T(382,'ミオ'),fn:T(383,'カイ'),party:null,maxd:0,flow:0,mapv:2,flags:{}};dim();}
+function newGame(){try{gtag('event','game_start')}catch(e){}S={depth:0,x:3,y:5,dir:0,lv:1,hp:36,mhp:36,mp:8,mmp:8,atk:6,def:4,exp:0,gold:200,items:{onigiri:2},wp:null,ar:null,sin:0,town:0,good:0,mal:{},carry:{},name:T(381,'ナギ'),hn:T(382,'ミオ'),fn:T(383,'カイ'),party:null,maxd:0,flow:0,mapv:2,flags:{}};dim();}
 function dim(){if(S){for(const d in GATE)for(const g of GATE[d])maps[d][g.y][g.x]=S.flags['o_'+g.key]?g.open:'S';}if(S&&maps[S.depth]){MW=maps[S.depth][0].length;MH=maps[S.depth].length;}}
 const nmz=t=>String(t).replace(/あなた/g,S.name).replace(/\{h\}/g,S.hn).replace(/\{f\}/g,S.fn);
 // シンカーの侵食度（S.sin 0〜100）と街の侵食（S.town 0〜100）
@@ -962,7 +965,7 @@ function shareCard(st){const c=mk(1200,675),x=c.getContext('2d'),J=(window.__FPR
   x.font='18px '+J;x.fillStyle='#8ff0c0';x.fillText('#DEARBALLAST',R0,630);const u='b1f-games.itch.io';x.fillStyle='#a89cc8';x.fillText(u,RE-x.measureText(u).width,630);
   return c;}
 let shareCb=null;
-function openShare(cb,demo){shareCb=cb||null;{const f=document.getElementById('shf');f.style.display=demo?'':'none';f.textContent=T(451,'Xで フォロー');f.onclick=()=>{try{window.open('https://x.com/intent/follow?screen_name=b1fgames','_blank','noopener');}catch(e){}};}const st=shareStats(),c=shareCard(st),$=id=>document.getElementById(id),bx=$('shx'),bs=$('shs'),bc=$('shc');
+function openShare(cb,demo){if(demo)try{gtag('event','demo_complete')}catch(e){}shareCb=cb||null;{const f=document.getElementById('shf');f.style.display=demo?'':'none';f.textContent=T(451,'Xで フォロー');f.onclick=()=>{try{gtag('event','x_follow_click');window.open('https://x.com/intent/follow?screen_name=b1fgames','_blank','noopener');}catch(e){}};}const st=shareStats(),c=shareCard(st),$=id=>document.getElementById(id),bx=$('shx'),bs=$('shs'),bc=$('shc');
   $('shimg').src=c.toDataURL('image/png');$('sht').textContent=T(452,'あなたの 街の 今日の 数字');bx.textContent=T(453,'Xで シェア');bs.textContent=T(454,'画像を 保存');bc.textContent=T(455,'とじる');$('shn').textContent=T(456,'画像は 長押し・右クリックでも 保存できます');
   const msg=st.nm+T(457,'の 街の 今日の 数字は ')+st.num+T(458,'。\n侵食度 ')+st.sin+T(426,'% / 街の侵食 ')+st.town+'%\n#DEARBALLAST';
   bx.onclick=()=>{try{window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(msg)+'&url='+encodeURIComponent(SHARE_URL),'_blank','noopener');}catch(e){}};
@@ -1685,5 +1688,6 @@ toTitle();
 requestAnimationFrame(frame);
 })();
 </script>
+<a href="privacy.html" target="_blank" style="position:fixed;left:6px;bottom:4px;font:10px sans-serif;color:#8a84a8;opacity:.6;z-index:9;text-decoration:none">Privacy</a>
 </body>
 </html>
